@@ -20,7 +20,7 @@ An artist can, of course, have many paintings. Paintings can only be in one gall
 * What does your schema look like?
 * What are the relationships between your models?
 
-
+gallery -1----m- painting -m----1-artist
 
 ### Class Attributes and Methods
 
