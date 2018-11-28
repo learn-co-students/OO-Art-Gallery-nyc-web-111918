@@ -45,25 +45,26 @@ class Artist
     #takes in num of paintings and years of exp - divides them
     #compares this number to each other
     #returns artist instance with highest value for this
-
-    #hash = {}
-    #all_artists = self.all
-    #all_artists.each do |artist, avg|
-      #avg = artist.paintings.count/artist.years_experience
-      #hash[artist] = avg
-    #end
-
-    #hash[artist]= self.paintings.count/self.years_experience
-
-
-    #artist_num_of_paintings = self.paintings.count
-    #artist_years_exp = self.years_experience
-
-    #avg_paintings = artist_num_of_paintings/artist_years_exp
-    #avg_paintings.sort.last
-
-    @@all.map {|artist| [artist, artist.paintings.length.to_f/artist.years_experience]}.sort_by { |arr| arr[1]}[-1][0]
+    avg = 0
+    most_prolific = nil
+    hash = {}
+    @@all.each do |artist|
+        hash[artist]=artist.paintings.count.to_f/artist.years_experience
+    end
+    hash.each do |artist, prolificacy|
+      if prolificacy > avg
+        avg = prolificacy
+        most_prolific = artist
+      end
+    end
+    most_prolific
   end
+
+#potential option    #avg_paintings.sort.last
+
+#another option that works!
+  #  @@all.map {|artist| [artist, artist.paintings.length.to_f/artist.years_experience]}.sort_by { |arr| arr[1]}[-1][0]
+  #end
 
   def create_painting(title, price, gallery)
     Painting.new(title, price, self, gallery)
